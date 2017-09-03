@@ -11,23 +11,21 @@ import java.util.List;
 
 import fvi.at.ua.themoviedb.R;
 import fvi.at.ua.themoviedb.adapter.MovieAdapter;
-import fvi.at.ua.themoviedb.api.MovieApiService;
 import fvi.at.ua.themoviedb.controller.Controller;
+import fvi.at.ua.themoviedb.model.MovieResult;
 import fvi.at.ua.themoviedb.model.Movie;
-import fvi.at.ua.themoviedb.model.Result;
 import fvi.at.ua.themoviedb.utils.InternetConnection;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     private static final String BASE_URL = "https://api.themoviedb.org/";
     private static final String API_KEY = "your api_key";
-
+  
     private static Retrofit retrofit = null;
     private static RecyclerView recyclerView = null;
 
@@ -55,14 +53,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void getApiData() {
 
-        Call<Movie> result = Controller.getMovieApiServise().getTopRatedMovies(API_KEY);
-        result.enqueue(new Callback<Movie>() {
+        Call<MovieResult> result = Controller.getMovieApiServise().getTopRatedMovies(API_KEY);
+        result.enqueue(new Callback<MovieResult>() {
             @Override
-            public void onResponse(Call<Movie> call, Response<Movie> response) {
+            public void onResponse(Call<MovieResult> call, Response<MovieResult> response) {
                 if(response.isSuccessful()) {
                     Log.d(TAG, "isSuccessful = " + response.isSuccessful());
 
-                    List<Result> results = response.body().getResults();
+                    List<Movie> results = response.body().getResults();
 
                     MovieAdapter movieAdapter = new MovieAdapter(results, R.layout.item_movie, getApplicationContext());
                     recyclerView.setAdapter(movieAdapter);
@@ -72,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Movie> call, Throwable t) {
+            public void onFailure(Call<MovieResult> call, Throwable t) {
                 Log.e(TAG,"onFailure = " + t.getMessage());
             }
         });

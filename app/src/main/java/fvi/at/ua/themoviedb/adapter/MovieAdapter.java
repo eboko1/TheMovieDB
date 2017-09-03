@@ -9,25 +9,21 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
 import java.util.List;
-import java.util.PriorityQueue;
 
 import fvi.at.ua.themoviedb.R;
 import fvi.at.ua.themoviedb.model.Movie;
-import fvi.at.ua.themoviedb.model.Result;
 
 /**
  * Created by Vika on 03.09.2017.
  */
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
-    private List<Result> results;
+    private List<Movie> results;
     private int rowLayout;
     private Context context;
 
-    public MovieAdapter(List<Result> results, int rowLayout, Context context) {
+    public MovieAdapter(List<Movie> results, int rowLayout, Context context) {
         this.results = results;
         this.rowLayout = rowLayout;
         this.context = context;

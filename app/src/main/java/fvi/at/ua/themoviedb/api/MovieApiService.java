@@ -1,7 +1,6 @@
 package fvi.at.ua.themoviedb.api;
 
-import fvi.at.ua.themoviedb.model.Movie;
-import fvi.at.ua.themoviedb.model.Result;
+import fvi.at.ua.themoviedb.model.MovieResult;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -12,5 +11,5 @@ import retrofit2.http.Query;
 
 public interface MovieApiService {
     @GET("3/movie/popular")
-    Call<Movie> getTopRatedMovies(@Query("api_key") String api_key);
+    Call<MovieResult> getTopRatedMovies(@Query("api_key") String api_key);
 }
