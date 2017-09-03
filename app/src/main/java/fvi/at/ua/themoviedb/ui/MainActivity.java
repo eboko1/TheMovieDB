@@ -14,6 +14,7 @@ import fvi.at.ua.themoviedb.adapter.MovieAdapter;
 import fvi.at.ua.themoviedb.controller.Controller;
 import fvi.at.ua.themoviedb.model.MovieResult;
 import fvi.at.ua.themoviedb.model.Movie;
+import fvi.at.ua.themoviedb.utils.Constants;
 import fvi.at.ua.themoviedb.utils.InternetConnection;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,7 +24,7 @@ import retrofit2.Retrofit;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-    private static final String API_KEY = "your api_key";
+
     private static RecyclerView recyclerView = null;
 
     @Override
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void getApiData() {
 
-        Call<MovieResult> result = Controller.getMovieApiServise().getTopRatedMovies(API_KEY);
+        Call<MovieResult> result = Controller.getMovieApiServise().getTopRatedMovies(Constants.HTTP.API_KEY);
         result.enqueue(new Callback<MovieResult>() {
             @Override
             public void onResponse(Call<MovieResult> call, Response<MovieResult> response) {
