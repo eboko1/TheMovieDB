@@ -12,14 +12,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Controller {
 
     private static Retrofit getRetrofitInstance(){
-      Retrofit retrofit = null;
-          if(retrofit == null) {
-             retrofit = new Retrofit.Builder()
-                      .baseUrl(Constants.HTTP.BASE_URL)
-                      .addConverterFactory(GsonConverterFactory.create())
-                      .build();
-          }
-    return retrofit;
+          Retrofit retrofit = null;
+              if(retrofit == null) {
+                 retrofit = new Retrofit.Builder()
+                          .baseUrl(Constants.HTTP.BASE_URL)
+                          .addConverterFactory(GsonConverterFactory.create())
+                          .build();
+              }
+     return retrofit;
     }
 
     public static  MovieApiService getMovieApiServise(){

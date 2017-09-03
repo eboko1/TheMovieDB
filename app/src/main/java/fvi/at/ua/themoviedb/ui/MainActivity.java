@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ import fvi.at.ua.themoviedb.api.MovieApiService;
 import fvi.at.ua.themoviedb.controller.Controller;
 import fvi.at.ua.themoviedb.model.Movie;
 import fvi.at.ua.themoviedb.model.Result;
+import fvi.at.ua.themoviedb.utils.InternetConnection;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -42,8 +44,12 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        getApiData();
-
+        if(InternetConnection.isInternetConnection(getApplicationContext()) == true) {
+            Log.i(TAG, "is inet connect = " + InternetConnection.isInternetConnection(getApplicationContext()));
+            Toast.makeText(this,"inet successful ",Toast.LENGTH_LONG).show();getApiData();
+        } else {
+            Toast.makeText(this,"Please connect internet ",Toast.LENGTH_LONG).show();
+        }
 
     }
 
@@ -54,12 +60,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Movie> call, Response<Movie> response) {
                 if(response.isSuccessful()) {
+                    Log.d(TAG, "isSuccessful = " + response.isSuccessful());
+
                     List<Result> results = response.body().getResults();
 
                     MovieAdapter movieAdapter = new MovieAdapter(results, R.layout.item_movie, getApplicationContext());
                     recyclerView.setAdapter(movieAdapter);
                     Log.d(TAG, "results size " + results.size());
-                    Log.d(TAG, "isSuccessful = " + response.isSuccessful());
+
                 }
             }
 
