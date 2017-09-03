@@ -11,6 +11,7 @@ import java.util.List;
 import fvi.at.ua.themoviedb.R;
 import fvi.at.ua.themoviedb.adapter.MovieAdapter;
 import fvi.at.ua.themoviedb.api.MovieApiService;
+import fvi.at.ua.themoviedb.controller.Controller;
 import fvi.at.ua.themoviedb.model.Movie;
 import fvi.at.ua.themoviedb.model.Result;
 import retrofit2.Call;
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     private static final String BASE_URL = "https://api.themoviedb.org/";
-    private static final String API_KEY = "70e74e0ce9cf659b776cb0aed6073a7e";
+    private static final String API_KEY = "your api_key";
 
     private static Retrofit retrofit = null;
     private static RecyclerView recyclerView = null;
@@ -47,16 +48,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getApiData() {
-        if(retrofit == null){
-            retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
 
-        }
-        MovieApiService movieApiService = retrofit.create(MovieApiService.class);
-
-        Call<Movie> result = movieApiService.getTopRatedMovies(API_KEY);
+        Call<Movie> result = Controller.getMovieApiServise().getTopRatedMovies(API_KEY);
         result.enqueue(new Callback<Movie>() {
             @Override
             public void onResponse(Call<Movie> call, Response<Movie> response) {
