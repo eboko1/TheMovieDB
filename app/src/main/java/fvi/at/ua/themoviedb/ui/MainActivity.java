@@ -1,4 +1,4 @@
-package fvi.at.ua.themoviedb;
+package fvi.at.ua.themoviedb.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.util.Log;
 
 import java.util.List;
 
+import fvi.at.ua.themoviedb.R;
 import fvi.at.ua.themoviedb.adapter.MovieAdapter;
 import fvi.at.ua.themoviedb.api.MovieApiService;
 import fvi.at.ua.themoviedb.model.Movie;
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     private static final String BASE_URL = "https://api.themoviedb.org/";
-    private static final String API_KEY = "";
+    private static final String API_KEY = "70e74e0ce9cf659b776cb0aed6073a7e";
 
     private static Retrofit retrofit = null;
     private static RecyclerView recyclerView = null;
@@ -59,16 +60,19 @@ public class MainActivity extends AppCompatActivity {
         result.enqueue(new Callback<Movie>() {
             @Override
             public void onResponse(Call<Movie> call, Response<Movie> response) {
-                List<Result> results = response.body().getResults();
+                if(response.isSuccessful()) {
+                    List<Result> results = response.body().getResults();
 
-                MovieAdapter movieAdapter = new MovieAdapter(results,R.layout.item_movie, getApplicationContext());
-                recyclerView.setAdapter(movieAdapter);
-                Log.d(TAG, "Number of movies received: " + results.size());
+                    MovieAdapter movieAdapter = new MovieAdapter(results, R.layout.item_movie, getApplicationContext());
+                    recyclerView.setAdapter(movieAdapter);
+                    Log.d(TAG, "results size " + results.size());
+                    Log.d(TAG, "isSuccessful = " + response.isSuccessful());
+                }
             }
 
             @Override
             public void onFailure(Call<Movie> call, Throwable t) {
-                Log.e(TAG, t.toString());
+                Log.e(TAG,"onFailure = " + t.getMessage());
             }
         });
      }
