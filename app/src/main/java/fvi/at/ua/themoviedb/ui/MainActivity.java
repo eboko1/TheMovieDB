@@ -23,13 +23,8 @@ import retrofit2.Retrofit;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-    private static final String BASE_URL = "https://api.themoviedb.org/";
     private static final String API_KEY = "your api_key";
-    
-    private static Retrofit retrofit = null;
     private static RecyclerView recyclerView = null;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

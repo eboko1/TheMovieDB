@@ -15,13 +15,13 @@ import java.util.List;
 
 import fvi.at.ua.themoviedb.R;
 import fvi.at.ua.themoviedb.model.Movie;
+import fvi.at.ua.themoviedb.utils.Constants;
 
 /**
  * Created by Vika on 03.09.2017.
  */
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
-    public static final String IMAGE_URL_BASE_PATH = "https://image.tmdb.org/t/p/w300/";
     private List<Movie> results;
     private int rowLayout;
     private Context context;
@@ -40,7 +40,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     @Override
     public void onBindViewHolder(MovieViewHolder holder, int position) {
-        String imageUrl = IMAGE_URL_BASE_PATH + results.get(position).getBackdropPath();
+        String imageUrl = Constants.HTTP.IMAGE_URL_BASE_PATH + results.get(position).getBackdropPath();
 
         Picasso.with(context)
                 .load(imageUrl)
