@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import fvi.at.ua.themoviedb.R;
@@ -19,6 +21,7 @@ import fvi.at.ua.themoviedb.model.Movie;
  */
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
+    public static final String IMAGE_URL_BASE_PATH = "https://image.tmdb.org/t/p/w300/";
     private List<Movie> results;
     private int rowLayout;
     private Context context;
@@ -37,8 +40,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     @Override
     public void onBindViewHolder(MovieViewHolder holder, int position) {
-        //Picasso.with(context)
-          //      .load()
+        String imageUrl = IMAGE_URL_BASE_PATH + results.get(position).getBackdropPath();
+
+        Picasso.with(context)
+                .load(imageUrl)
+                .placeholder(R.mipmap.ic_launcher_round)
+                .error(R.mipmap.ic_launcher)
+                .into(holder.movieImage);
 
         holder.title.setText(results.get(position).getTitle());
         holder.release_data.setText(results.get(position).getReleaseDate());
