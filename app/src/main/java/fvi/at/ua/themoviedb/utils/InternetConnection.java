@@ -21,8 +21,6 @@ public class InternetConnection {
         }
         else {connected = false;}
         return connected;
-       //  ConnectivityManager connectivityManager =  (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
-       // return connectivityManager.getActiveNetworkInfo().isConnectedOrConnecting();
 
     }
 }

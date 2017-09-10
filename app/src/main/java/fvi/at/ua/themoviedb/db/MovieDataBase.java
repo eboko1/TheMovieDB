@@ -41,19 +41,22 @@ public class MovieDataBase  extends SQLiteOpenHelper {
     }
 
     public void insertMovie(Movie movie) {
-        //(String title, String overview_desc, String popularity, String image_url)
-        Log.d(TAG, "Values Got " + movie.getTitle());
+        Log.d(TAG, "Values movie: " + movie.getTitle());
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
         ContentValues contentValues = new ContentValues();
-        //contentValues.put("TITLE", title);
-        //contentValues.put("OVERVIEW", overview_desc);
-        //contentValues.put("POPULARITY", popularity);
-        //contentValues.put("IMAGE", image_url);
         contentValues.put("TITLE", movie.getTitle());
         contentValues.put("OVERVIEW", movie.getOverview());
         contentValues.put("POPULARITY", movie.getPopularity());
         contentValues.put("PHOTO_URL", movie.getPosterPath());
-       // contentValues.put("PHOTO", );
-        this.getWritableDatabase().insertOrThrow(Constants.DATABASE.TABLE_NAME, null, contentValues);
+
+        try {
+            db.insert(Constants.DATABASE.TABLE_NAME, null, contentValues);
+        } catch (Exception e){
+            Log.i(TAG, "error insertMovie " + e.getMessage());
+        }
+        db.close();
     }
 
 }
