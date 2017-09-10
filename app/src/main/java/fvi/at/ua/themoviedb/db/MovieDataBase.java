@@ -26,7 +26,6 @@ public class MovieDataBase  extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-      //  updateMyDatabase(db, 0, Constants.DATABASE.DB_VERSION ) ;
         try {
             db.execSQL(Constants.DATABASE.TABLE_CREATE_MOVIE);
         } catch (SQLException e) {
