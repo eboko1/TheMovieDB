@@ -24,6 +24,7 @@ public class Constants {
 
         public static final String DROP_QUERY = "DROP TABLE IF EXIST " + TABLE_NAME;
 
+        public static final String GET_MOVIE_QUERY = "SELECT * FROM " + TABLE_NAME;
 
         public static final String PRODUCT_ID = "productId";
         public static final String TITLE = "title";
@@ -37,8 +38,6 @@ public class Constants {
                 + TITLE +" TEXT not null, "
                 + OVERVIEW + " TEXT not null, "
                 + POPULARITY + " TEXT not null, "
-                + PHOTO_URL + " TEXT not null, "
-                + PHOTO + " blob not null)";
-
+                + PHOTO_URL + " TEXT not null)";
     }
 }
