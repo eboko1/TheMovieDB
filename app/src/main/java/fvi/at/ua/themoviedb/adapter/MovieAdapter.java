@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fvi.at.ua.themoviedb.R;
@@ -24,15 +26,19 @@ import fvi.at.ua.themoviedb.utils.Constants;
  */
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
-    private List<Movie> results;
+    private static final String TAG = "MainActivity";
+    private List<Movie> movieList;
     private int rowLayout;
     private Context context;
 
-    public MovieAdapter(List<Movie> results, int rowLayout, Context context) {
-        this.results = results;
+
+
+    public MovieAdapter(List<Movie> movieList, int rowLayout, Context context) {
+        this.movieList = movieList;
         this.rowLayout = rowLayout;
         this.context = context;
     }
+
 
     @Override
     public MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -41,8 +47,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     }
 
     @Override
-    public void onBindViewHolder(MovieViewHolder holder, int position) {
-        String imageUrl = Constants.HTTP.IMAGE_URL_BASE_PATH + results.get(position).getBackdropPath();
+    public void onBindViewHolder(MovieViewHolder holder, final int position) {
+        String imageUrl = Constants.HTTP.IMAGE_URL_BASE_PATH + movieList.get(position).getBackdropPath();
 
         Picasso.with(context)
                 .load(imageUrl)
@@ -50,23 +56,34 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
                 .error(R.mipmap.ic_launcher)
                 .into(holder.movieImage);
 
-        holder.title.setText(results.get(position).getTitle());
-        holder.release_data.setText(results.get(position).getReleaseDate());
-        holder.overview_desc.setText(results.get(position).getOverview());
-        holder.popularity.setText(results.get(position).getPopularity().toString());
+        holder.title.setText(movieList.get(position).getTitle());
+        holder.release_data.setText(movieList.get(position).getReleaseDate());
+        holder.overview_desc.setText(movieList.get(position).getOverview());
+        holder.popularity.setText(movieList.get(position).getPopularity().toString());
+        holder.movie_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG,"onClick " + movieList.get(position).getTitle() );
+            }
+        });
 
-        Bitmap bmImage = ((BitmapDrawable)holder.movieImage.getDrawable()).getBitmap();
+        //Bitmap bmImage = ((BitmapDrawable)holder.movieImage.getDrawable()).getBitmap();
     }
 
     @Override
     public int getItemCount() {
-        return results.size();
+        return movieList.size();
     }
 
+    public Movie getSelectedMovie(int position) {
+        return movieList.get(position);
+    }
+
+
     public class MovieViewHolder extends RecyclerView.ViewHolder {
-        LinearLayout moviesLayout;
         TextView title, release_data, popularity, overview_desc;
         ImageView  movieImage;
+        LinearLayout movie_layout;
 
         public MovieViewHolder(View itemView) {
             super(itemView);
@@ -76,7 +93,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             release_data = (TextView)itemView.findViewById(R.id.release_data);
             popularity = (TextView)itemView.findViewById(R.id.popularity);
             overview_desc = (TextView)itemView.findViewById(R.id.overview_desc);
+            movie_layout = (LinearLayout)itemView.findViewById(R.id.movies_layout);
         }
-
     }
+
+
 }

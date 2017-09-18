@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     private static RecyclerView recyclerView = null;
+    MovieAdapter movieAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,18 +57,18 @@ public class MainActivity extends AppCompatActivity {
 
     private void getApiData() {
 
-        Call<MovieResult> result = Rest.getMovieApiServise().getTopRatedMovies(Constants.HTTP.API_KEY);
+        Call<MovieResult> result = Rest.getMovieApiClient().getTopRatedMovies(Constants.HTTP.API_KEY);
         result.enqueue(new Callback<MovieResult>() {
             @Override
             public void onResponse(Call<MovieResult> call, Response<MovieResult> response) {
                 if(response.isSuccessful()) {
                     Log.d(TAG, "isSuccessful = " + response.isSuccessful());
 
-                    List<Movie> results = response.body().getResults();
+                    List<Movie> movieList = response.body().getResults();
 
-                    MovieAdapter movieAdapter = new MovieAdapter(results, R.layout.item_movie, getApplicationContext());
+                    movieAdapter = new MovieAdapter(movieList, R.layout.item_movie, getApplicationContext());
                     recyclerView.setAdapter(movieAdapter);
-                    Log.d(TAG, "results size " + results.size());
+                    Log.d(TAG, "results size " + movieList.size());
                 }
             }
 
@@ -76,4 +78,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
      }
+
 }

@@ -22,9 +22,10 @@ public class Rest {
      return retrofit;
     }
 
-    public static MovieApiClient getMovieApiServise(){
-        MovieApiClient movieApiService = getRetrofitInstance().create(MovieApiClient.class);
-        return movieApiService;
+    public static MovieApiClient getMovieApiClient(){
+         MovieApiClient movieApiClient = getRetrofitInstance().create(MovieApiClient.class);
+         return movieApiClient;
     }
+
 
 }
