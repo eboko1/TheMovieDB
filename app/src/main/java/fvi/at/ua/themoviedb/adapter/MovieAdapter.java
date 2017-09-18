@@ -1,6 +1,8 @@
 package fvi.at.ua.themoviedb.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,6 +54,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         holder.release_data.setText(results.get(position).getReleaseDate());
         holder.overview_desc.setText(results.get(position).getOverview());
         holder.popularity.setText(results.get(position).getPopularity().toString());
+
+        Bitmap bmImage = ((BitmapDrawable)holder.movieImage.getDrawable()).getBitmap();
     }
 
     @Override

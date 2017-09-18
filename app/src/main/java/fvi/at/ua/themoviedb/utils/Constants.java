@@ -11,7 +11,7 @@ public class Constants {
         public static final String API_KEY = "your api_key";
         // for MovieAdapter.class, helps picasso image url
         public static final String IMAGE_URL_BASE_PATH = "https://image.tmdb.org/t/p/w300/";
-        // for Controller.class
+        // for Rest.class
         public static final String BASE_URL = "https://api.themoviedb.org/";
 
     }
@@ -28,16 +28,17 @@ public class Constants {
 
         public static final String PRODUCT_ID = "productId";
         public static final String TITLE = "title";
+        public static final String RELEASE_DATA = "release_data";
         public static final String OVERVIEW = "overview";
         public static final String POPULARITY = "popularity";
-        public static final String PHOTO_URL = "photo_url";
-        public static final String PHOTO = "photo";
+        public static final String PHOTO_PATH = "photo_url";
 
         public static final String TABLE_CREATE_MOVIE = "CREATE TABLE "+ TABLE_NAME + " " +
                 "(" + PRODUCT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + TITLE +" TEXT not null, "
+                + RELEASE_DATA +" TEXT not null, "
                 + OVERVIEW + " TEXT not null, "
                 + POPULARITY + " TEXT not null, "
-                + PHOTO_URL + " TEXT not null)";
+                + PHOTO_PATH + " TEXT not null)";
     }
 }

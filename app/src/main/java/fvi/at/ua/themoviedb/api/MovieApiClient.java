@@ -9,7 +9,7 @@ import retrofit2.http.Query;
  * Created by Vika on 03.09.2017.
  */
 
-public interface MovieApiService {
+public interface MovieApiClient {
     @GET("3/movie/popular")
     Call<MovieResult> getTopRatedMovies(@Query("api_key") String api_key);
 }

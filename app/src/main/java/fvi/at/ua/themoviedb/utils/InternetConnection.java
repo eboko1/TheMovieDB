@@ -18,8 +18,9 @@ public class InternetConnection {
                 connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
             //we are connected to a network
             connected = true;
+        } else {
+            connected = false;
         }
-        else {connected = false;}
         return connected;
 
     }

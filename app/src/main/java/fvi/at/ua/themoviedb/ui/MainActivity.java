@@ -11,7 +11,7 @@ import java.util.List;
 
 import fvi.at.ua.themoviedb.R;
 import fvi.at.ua.themoviedb.adapter.MovieAdapter;
-import fvi.at.ua.themoviedb.controller.Controller;
+import fvi.at.ua.themoviedb.controller.Rest;
 import fvi.at.ua.themoviedb.model.MovieResult;
 import fvi.at.ua.themoviedb.model.Movie;
 import fvi.at.ua.themoviedb.utils.Constants;
@@ -38,17 +38,24 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         if(InternetConnection.isInternetConnection(getApplicationContext()) == true) {
-            Log.i(TAG, "is inet connect = " + InternetConnection.isInternetConnection(getApplicationContext()));
-            Toast.makeText(this,"inet successful ",Toast.LENGTH_LONG).show();getApiData();
+            Log.i(TAG, "connection inet " + InternetConnection.isInternetConnection(getApplicationContext()));
+            Toast.makeText(this,"inet successful ",Toast.LENGTH_LONG).show();
+            getApiData();
         } else {
-            Toast.makeText(this,"Please connect internet ",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Please connection internet ",Toast.LENGTH_LONG).show();
+            getMovieFromDatabase();
         }
+
+    }
+
+    private void getMovieFromDatabase() {
+
 
     }
 
     private void getApiData() {
 
-        Call<MovieResult> result = Controller.getMovieApiServise().getTopRatedMovies(Constants.HTTP.API_KEY);
+        Call<MovieResult> result = Rest.getMovieApiServise().getTopRatedMovies(Constants.HTTP.API_KEY);
         result.enqueue(new Callback<MovieResult>() {
             @Override
             public void onResponse(Call<MovieResult> call, Response<MovieResult> response) {
@@ -60,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
                     MovieAdapter movieAdapter = new MovieAdapter(results, R.layout.item_movie, getApplicationContext());
                     recyclerView.setAdapter(movieAdapter);
                     Log.d(TAG, "results size " + results.size());
-
                 }
             }
 
