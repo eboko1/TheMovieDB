@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import fvi.at.ua.themoviedb.model.Movie;
+
 /**
  * Created by Vika on 03.09.2017.
  */

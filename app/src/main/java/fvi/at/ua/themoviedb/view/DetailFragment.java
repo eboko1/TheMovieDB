@@ -1,4 +1,4 @@
-package fvi.at.ua.themoviedb.ui;
+package fvi.at.ua.themoviedb.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

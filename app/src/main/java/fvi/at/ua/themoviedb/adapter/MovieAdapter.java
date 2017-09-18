@@ -1,10 +1,6 @@
 package fvi.at.ua.themoviedb.adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
@@ -18,12 +14,10 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import fvi.at.ua.themoviedb.R;
 import fvi.at.ua.themoviedb.model.Movie;
-import fvi.at.ua.themoviedb.ui.DetailFragment;
 import fvi.at.ua.themoviedb.utils.Constants;
 
 /**
@@ -72,7 +66,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             @Override
             public void onClick(View v) {
                 Log.i(TAG,"onClick " + movieList.get(position).getTitle() );
-                
+
             }
         });
 

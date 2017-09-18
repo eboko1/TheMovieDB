@@ -1,4 +1,4 @@
-package fvi.at.ua.themoviedb.ui;
+package fvi.at.ua.themoviedb.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
