@@ -8,7 +8,7 @@ public class Constants {
 
     public static final class HTTP {
         //for api service in MainActivity
-        public static final String API_KEY = "your api_key";
+        public static final String API_KEY = "70e74e0ce9cf659b776cb0aed6073a7e";//"your api_key";
         // for MovieAdapter.class, helps picasso image url
         public static final String IMAGE_URL_BASE_PATH = "https://image.tmdb.org/t/p/w300/";
         // for Rest.class
@@ -40,5 +40,13 @@ public class Constants {
                 + OVERVIEW + " TEXT not null, "
                 + POPULARITY + " TEXT not null, "
                 + PHOTO_PATH + " TEXT not null)";
+    }
+    public static final class BUNDLE{
+        public static final String TITLE_KEY = "title";
+        public static final String OVERVIEW_KEY = "overview";
+        public static final String IMAGE_PATH_KEY = "path";
+    }
+    public  static final  class TAG{
+        public static final String FM_TAG = "dialogTag";
     }
 }

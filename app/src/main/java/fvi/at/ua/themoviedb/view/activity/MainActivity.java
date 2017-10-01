@@ -1,7 +1,8 @@
-package fvi.at.ua.themoviedb.view;
+package fvi.at.ua.themoviedb.view.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -10,7 +11,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import fvi.at.ua.themoviedb.R;
-import fvi.at.ua.themoviedb.adapter.MovieAdapter;
+import fvi.at.ua.themoviedb.view.adapter.MovieAdapter;
 import fvi.at.ua.themoviedb.controller.Rest;
 import fvi.at.ua.themoviedb.model.MovieResult;
 import fvi.at.ua.themoviedb.model.Movie;
@@ -38,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
+        DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
+        recyclerView.setItemAnimator(defaultItemAnimator);
 
         if(InternetConnection.isInternetConnection(getApplicationContext()) == true) {
             Log.i(TAG, "connection inet " + InternetConnection.isInternetConnection(getApplicationContext()));
@@ -66,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
                     List<Movie> movieList = response.body().getResults();
 
-                    movieAdapter = new MovieAdapter(movieList, R.layout.item_movie, getApplicationContext());
+                    movieAdapter = new MovieAdapter(getApplicationContext(), movieList, R.layout.item_movie, MainActivity.this.getSupportFragmentManager() );
                     recyclerView.setAdapter(movieAdapter);
                     Log.d(TAG, "results size " + movieList.size());
                 }

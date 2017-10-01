@@ -5,10 +5,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/site"
+    <ImageView
+        android:id="@+id/detail_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="fragment"/>
+        android:layout_gravity="top"
+        android:padding="8dp"
+        android:paddingRight="16dp" />
+
+    <TextView
+        android:id="@+id/detail_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="16dp"
+        android:textStyle="bold"
+        android:textColor="@color/colorBlack"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/detail_overview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="3"
+        android:paddingRight="16dp"
+        android:padding="8dp"
+        android:textColor="@color/colorGreyLight"
+        android:text="@string/hello_blank_fragment"/>
 
 </LinearLayout>
