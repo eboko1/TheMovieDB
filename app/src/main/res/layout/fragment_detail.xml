@@ -8,26 +8,24 @@
     <ImageView
         android:id="@+id/detail_image"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:padding="8dp"
-        android:paddingRight="16dp" />
+        android:layout_height="120dp"
+        android:layout_gravity="top" />
 
     <TextView
-        android:id="@+id/detail_title"
+        android:id="@+id/detail_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingRight="16dp"
         android:textStyle="bold"
+        android:paddingLeft="8dp"
         android:textColor="@color/colorBlack"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:text="DETAIL:"/>
 
     <TextView
         android:id="@+id/detail_overview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:maxLines="3"
-        android:paddingRight="16dp"
         android:padding="8dp"
         android:textColor="@color/colorGreyLight"
         android:text="@string/hello_blank_fragment"/>

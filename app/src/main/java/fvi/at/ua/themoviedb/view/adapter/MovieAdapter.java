@@ -54,6 +54,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     public void onBindViewHolder(MovieViewHolder holder, final int position) {
         Log.i(TAG, "onBindViewHolder");
         final String imageUrl = Constants.HTTP.IMAGE_URL_BASE_PATH + movieList.get(position).getBackdropPath();
+        final String bigImageUrl = Constants.HTTP.IMAGE_URL_BASE_PATH + movieList.get(position).getPosterPath();
+        Log.i(TAG, "imageUrl = "+imageUrl);
+        Log.i(TAG, "bigImageUrl = "+bigImageUrl);
+
 
         Picasso.with(context)
                 .load(imageUrl)
@@ -62,9 +66,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
                 .into(holder.movieImage);
         final String title = movieList.get(position).getTitle();
         final String overview = movieList.get(position).getOverview();
+
         holder.title.setText(title);
         holder.release_data.setText(movieList.get(position).getReleaseDate());
-        holder.overview_desc.setText(overview);
         holder.popularity.setText(movieList.get(position).getPopularity().toString());
 
 
@@ -105,7 +109,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
 
     public class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView title, release_data, popularity, overview_desc;
+        TextView title, release_data, popularity;
         ImageView  movieImage;
         LinearLayout movie_layout;
         ItemClickListener itemClickListener;
@@ -118,7 +122,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             title = (TextView)itemView.findViewById(R.id.title);
             release_data = (TextView)itemView.findViewById(R.id.release_data);
             popularity = (TextView)itemView.findViewById(R.id.popularity);
-            overview_desc = (TextView)itemView.findViewById(R.id.overview_desc);
             movie_layout = (LinearLayout)itemView.findViewById(R.id.movies_layout);
 
             itemView.setOnClickListener(this);
